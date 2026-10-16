@@ -72,12 +72,19 @@ public class Pista {
     }
 
     public String getDuracion() {
+        if (milisegundos == null) {
+            return "Duración desconocida";
+        }
+
         int segundos = milisegundos / 1000;
         return String.format("%d:%02d", segundos / 60, segundos % 60);
     }
 
     @Override
     public String toString() {
-        return nombre + " | " + genero.getNombre() + " | " + getDuracion() + " | " + precioUnitario + " €";
+        String nombreGenero = (genero != null) ? genero.getNombre() : "Sin género";
+
+        return nombre + " | " + nombreGenero + " | " + getDuracion()
+                + " | " + precioUnitario + " €";
     }
 }
